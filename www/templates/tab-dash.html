@@ -1,20 +1,21 @@
 <ion-view view-title="Inicio">
   <ion-content class="padding">
     <h2>Bienvenidos a RestoBrc v.1 </h2>
-    <p>
-    Prototipo de la aplicacion RestoBrc v.1
-    </p>
-    <p>
-     Proyecto de tesina Desarrollo de Sistemas Informaticos.
-    </p>
-    <p>
-     Ponganse las pilas que venimos como el poporembó
-    </p>
-    <p>
-      Matias.
-      Bruno.
-      Bauty.
-      Diego.
-    </p>
+
+
+      <ion-header-bar class="top">
+        <h1 class="title">Items</h1>
+        <button class="button button-icon ion-plus" ng-click="addItem()">
+        </button>
+      </ion-header-bar>
+
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="item in items">
+          {{item.name}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
   </ion-content>
 </ion-view>
