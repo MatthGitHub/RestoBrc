@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
     var name = prompt("What do you need to buy?");
     if (name) {
       $scope.items.$add({
-        "name": name
+        "usuario.nombre": name
       });
     }
   };
