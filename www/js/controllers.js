@@ -21,10 +21,13 @@ angular.module('starter.controllers', ['ionic'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope,$state) {
   $scope.settings = {
     enableFriends: true
   };
+  $scope.salir = function(){
+      $state.go('login');
+  }
 })
 
 .controller("ListCtrl", function($scope, Items, $ionicModal) {
