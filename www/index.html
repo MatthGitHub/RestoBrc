@@ -32,16 +32,10 @@
   </head>
   <body ng-app="starter">
     <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
     -->
     <ion-nav-view></ion-nav-view>
   </body>
@@ -56,5 +50,22 @@
       messagingSenderId: "916651152736"
     };
     firebase.initializeApp(config);
+  </script>
+
+  <script id="templates/login.html" type="text/ng-template">
+
+      <ion-view view-title="Login" name="login-view">
+        <ion-content class="padding background">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="text" placeholder="Username" ng-model="data.username">
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="Password" ng-model="data.password">
+                </label>
+            </div>
+            <button class="button button-block button-calm" ng-click="facebookSignIn()">Login with Facebook</button>
+        </ion-content>
+      </ion-view>
   </script>
 </html>
