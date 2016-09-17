@@ -59,15 +59,15 @@
             <div class="list list-inset title_inicio_sesion">
                 <h4 >Inicio de sesion local</h4>
                 <label class="item item-input">
-                    <input type="text" placeholder="Usuario">
+                    <input type="text" placeholder="Correo" ng-model="data.email">
                 </label>
                 <label class="item item-input">
-                    <input type="password" placeholder="Contraseña">
+                    <input type="password" placeholder="Contraseña" ng-model="data.password">
                 </label>
                 <button class="button button-block button-stable" ng-click="ingresar()">Ingresar</button>
-                <button class="button button-block button-stable">Registrarse</button>
+                <button class="button button-block button-stable" ng-click="registrar()">Registrarse</button>
 
-                <br><br>
+                <br>
 
                 <div>
                     <h4> Registrarse con Redes Sociales</h5>

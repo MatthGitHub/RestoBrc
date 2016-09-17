@@ -33,7 +33,7 @@ angular.module('starter.controllers', ['ionic'])
     var name = prompt("What do you need to buy?");
     if (name) {
       $scope.items.$add({
-        "usuario.nombre": name
+        "usuario": name
       });
     }
   };
@@ -116,10 +116,39 @@ angular.module('starter.controllers', ['ionic'])
     return info.promise;
   };
 
+  $scope.registrar = function(){
+
+  var ref = new Firebase("https://restobrc.firebaseio.com");
+
+  ref.createUser({
+    email: $scope.data.email,
+    password: $scope.data.password
+  }, function(error, userData) {
+    if (error) {
+      console.log("Error creating user:", error);
+    } else {
+      console.log("Successfully created user account with uid:", userData.uid);
+    }
+  });
+};
+
   //Esta funcion se activa con el boton ingresar
-  $scope.ingresar = function() {
-    $state.go('tab.dash');
-  }
+
+$scope.ingresar = function(){
+
+  var ref = new Firebase("https://restobrc.firebaseio.com");
+
+  ref.authWithPassword({
+    email: $scope.data.email,
+    password: $scope.data.password
+  }, function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+    } else {
+      $state.go('tab.dash');
+    }
+  });
+};
 
   //This method is executed when the user press the "Login with facebook" button
   $scope.facebookSignIn = function() {
