@@ -11,8 +11,11 @@
 }
 
 .proximamente{
-    border: 1px solid;
+    border: 2px solid;
     border-color: red;
     border-radius: 5px;
-    display:inline-block;
+    display: inline-block;
+    padding: 0 5px 0 5px;
+    background-color: red;
+    color: white;
 }
