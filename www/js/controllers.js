@@ -33,7 +33,7 @@ angular.module('starter.controllers', ['ionic'])
     var name = prompt("What do you need to buy?");
     if (name) {
       $scope.items.$add({
-        "usuario.nombre": name
+        "usuario": name
       });
     }
   };
