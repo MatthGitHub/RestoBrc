@@ -3,3 +3,16 @@
     background: url('../img/fondo_main_tab.jpg') no-repeat center fixed;
     background-size: 100% 100%;
 }
+
+.title_inicio_sesion{
+    text-align: center;
+    color: #757575;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.proximamente{
+    border: 1px solid;
+    border-color: red;
+    border-radius: 5px;
+    display:inline-block;
+}

@@ -56,15 +56,31 @@
 
       <ion-view view-title="Login" name="login-view">
         <ion-content class="padding background">
-            <div class="list list-inset">
+            <div class="list list-inset title_inicio_sesion">
+                <h4 >Inicio de sesion local</h4>
                 <label class="item item-input">
-                    <input type="text" placeholder="Username" ng-model="data.username">
+                    <input type="text" placeholder="Usuario">
                 </label>
                 <label class="item item-input">
-                    <input type="password" placeholder="Password" ng-model="data.password">
+                    <input type="password" placeholder="Contraseña">
                 </label>
+                <button class="button button-block">Ingresar</button>
+                <button class="button button-block">Registrarse</button>
+
+                <br><br>
+
+                <div>
+                    <h4> Registrarse con Redes Sociales</h5>
+                </div>
+                <div class="proximamente">
+                    <h5>Proximamente</h5>
+                </div>
+
+                <button class="button button-block button-positive" ng-click="facebookSignIn()">Iniciar con Facebook</button>
+                <button class="button button-block button-assertive" ng-click="">Iniciar con Google+</button>
+                <button class="button button-block button-calm" ng-click="facebookSignIn()">Iniciar con Twitter</button>
             </div>
-            <button class="button button-block button-calm" ng-click="facebookSignIn()">Login with Facebook</button>
+
         </ion-content>
       </ion-view>
   </script>
