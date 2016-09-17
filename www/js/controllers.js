@@ -116,6 +116,11 @@ angular.module('starter.controllers', ['ionic'])
     return info.promise;
   };
 
+  //Esta funcion se activa con el boton ingresar
+  $scope.ingresar = function() {
+    $state.go('tab.dash');
+  }
+
   //This method is executed when the user press the "Login with facebook" button
   $scope.facebookSignIn = function() {
     facebookConnectPlugin.getLoginStatus(function(success){
