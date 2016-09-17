@@ -12,12 +12,13 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
-
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+
+    <script src="lib/angular-messages/angular-messages.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -54,32 +55,54 @@
 
   <script id="templates/login.html" type="text/ng-template">
 
-      <ion-view view-title="Login" name="login-view">
-        <ion-content class="padding background">
-            <div class="list list-inset title_inicio_sesion">
-                <h4 >Inicio de sesion local</h4>
-                <label class="item item-input">
-                    <input type="text" placeholder="Correo" ng-model="data.email">
-                </label>
-                <label class="item item-input">
-                    <input type="password" placeholder="Contraseña" ng-model="data.password">
-                </label>
-                <button class="button button-block button-stable" ng-click="ingresar()">Ingresar</button>
-                <button class="button button-block button-stable" ng-click="registrar()">Registrarse</button>
+    <ion-view view-title="Login" name="login-view">
+      <ion-content class="padding background">
+        <div class="list list-inset title_inicio_sesion">
+          <h4 >Inicio de sesion local</h4>
+          <label class="item item-input">
+            <input name="email" type="text" placeholder="Correo" ng-model="data.email">
+          </label>
+          <label class="item item-input">
+            <input name="pwd" type="password" placeholder="Contraseña" ng-model="data.password">
+          </label>
+          <button class="button button-block button-stable" ng-click="ingresar()">Ingresar</button>
+          <button class="button button-block button-stable" ng-click="openModal()">Registrarse</button>
 
-                <br>
+          <br>
 
-                <div>
-                    <h4> Registrarse con Redes Sociales</h5>
-                </div>
-                    <h5 class="proximamente">Proximamente</h5>
+          <div>
+            <h4>
+              Registrarse con Redes Sociales</h5>
+          </div>
+          <h5 class="proximamente">Proximamente</h5>
 
-                <button class="button button-block button-positive" ng-click="facebookSignIn()">Iniciar con Facebook</button>
-                <button class="button button-block button-assertive" ng-click="">Iniciar con Google+</button>
-                <button class="button button-block button-calm" ng-click="facebookSignIn()">Iniciar con Twitter</button>
-            </div>
+          <button class="button button-block button-positive" ng-click="facebookSignIn()">Iniciar con Facebook</button>
+          <button class="button button-block button-assertive" ng-click="">Iniciar con Google+</button>
+          <button class="button button-block button-calm" ng-click="facebookSignIn()">Iniciar con Twitter</button>
+        </div>
 
-        </ion-content>
-      </ion-view>
+      </ion-content>
+    </ion-view>
+  </script>
+
+  <!-- Formulario Modal para agregar item -->
+  <script id="registrarUsuario.html" type="text/ng-template">
+    <ion-modal-view>
+      <div class="list list-inset title_inicio_sesion">
+        <form name="formRegistro" ng-submit="registrar()">
+          <h4 >Registro de Usuario</h4>
+          <label class="item item-input">
+            <input name="email" type="email" placeholder="Correo" ng-model="data.email">
+          </label>
+          <label class="item item-input">
+            <input name="pwd" type="password" placeholder="Contraseña" ng-model="data.password">
+          </label>
+          <button class="button button-block button-balanced" type="submit">Registrarse</button>
+        </form>
+
+        <button class="button button-assertive" ng-click="closeModal()">Volver</button>
+
+      </ion-content>
+    </ion-modal-view>
   </script>
 </html>

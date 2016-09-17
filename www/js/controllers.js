@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic'])
+angular.module('starter.controllers', ['ionic', 'ngMessages'])
 
 .controller('DashCtrl', function($scope) {})
 
@@ -68,7 +68,7 @@ angular.module('starter.controllers', ['ionic'])
 
 })
 
-.controller('WelcomeCtrl', function($scope, $state, $q, UserService, $ionicLoading) {
+.controller('WelcomeCtrl', function($scope, $state, $q, UserService, $ionicLoading, $ionicModal) {
   // This is the success callback from the login method
   var fbLoginSuccess = function(response) {
     if (!response.authResponse){
@@ -119,7 +119,35 @@ angular.module('starter.controllers', ['ionic'])
     return info.promise;
   };
 
-  $scope.registrar = function(){
+
+  $ionicModal.fromTemplateUrl('registrarUsuario.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  // Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+
+  // REGISTRAR USUARIO DESDE FORMILARIO - $ionicModal
+  $scope.data = {};
+  $scope.registrar = function(formRegistro){
 
   var ref = new Firebase("https://restobrc.firebaseio.com");
 
