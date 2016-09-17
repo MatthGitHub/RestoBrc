@@ -1,0 +1,35 @@
+<ion-view view-title="Inicio">
+  <ion-content class="padding">
+    <h2>Bienvenidos a RestoBrc v.1 </h2>
+
+      <ion-header-bar class="top">
+        <h1 class="title">Items</h1>
+        <button class="button button-icon ion-plus" ng-click="openModal()">
+        </button>
+      </ion-header-bar>
+
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="item in items">
+          {{item.name}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
+  <!-- Formulario Modal para agregar item -->
+  <script id="nuevaReservaModal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Nueva Reserva</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-label>Resto?</ion-label>
+      <input type="text" placeholder="ejemplo"/>
+      <ion-label>Horario?</ion-label>
+      <input type="text" placeholder="ejemplo" />
+      <button class="button" ng-click="addItem()">Guardar</button>
+      <button class="button" ng-click="closeModal()">Volver</button>
+    </ion-content>
+  </ion-modal-view>
+  </script>
+</ion-view>
