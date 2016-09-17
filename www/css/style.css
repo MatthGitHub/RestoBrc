@@ -1,1 +1,5 @@
 /* Empty. Add your own CSS if you like */
+.background.scroll-content {
+    background: url('../img/fondo_main_tab.jpg') no-repeat center fixed;
+    background-size: 100% 100%;
+}
