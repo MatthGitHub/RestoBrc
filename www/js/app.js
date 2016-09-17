@@ -22,6 +22,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     }
   });
 })
+// Funcion para mover las tab a la parte inferior por defecto en
+// todos los dispositivos (iOS - Android)
+.config(function($ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
+})
 
 .config(function($stateProvider, $urlRouterProvider) {
 
