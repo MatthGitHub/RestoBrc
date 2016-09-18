@@ -25,8 +25,20 @@
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <!-- Firebase Data and Connection-->
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCQa5cVTiODs1MlcCUkJ6ZSp3hKtvf0GYI",
+        authDomain: "restobrc.firebaseapp.com",
+        databaseURL: "https://restobrc.firebaseio.com",
+        storageBucket: "restobrc.appspot.com",
+        messagingSenderId: "916651152736"
+      };
+      firebase.initializeApp(config);
+    </script>
 
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
@@ -41,33 +53,23 @@
     -->
     <ion-nav-view></ion-nav-view>
   </body>
-  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCQa5cVTiODs1MlcCUkJ6ZSp3hKtvf0GYI",
-      authDomain: "restobrc.firebaseapp.com",
-      databaseURL: "https://restobrc.firebaseio.com",
-      storageBucket: "restobrc.appspot.com",
-      messagingSenderId: "916651152736"
-    };
-    firebase.initializeApp(config);
-  </script>
 
   <script id="templates/login.html" type="text/ng-template">
 
     <ion-view view-title="Login" name="login-view">
       <ion-content class="padding background">
         <div class="list list-inset title_inicio_sesion">
-          <h4 >Inicio de sesion local</h4>
-          <label class="item item-input">
-            <input name="email" type="text" placeholder="Correo" ng-model="data.email">
-          </label>
-          <label class="item item-input">
-            <input name="pwd" type="password" placeholder="Contraseña" ng-model="data.password">
-          </label>
-          <button class="button button-block button-stable" ng-click="ingresar()">Ingresar</button>
-          <button class="button button-block button-stable" ng-click="openModal()">Registrarse</button>
+          <form name="formIngreso" ng-submit="ingresar()">
+            <h4 >Inicio de sesion local</h4>
+            <label class="item item-input">
+              <input name="email" type="email" placeholder="Correo" ng-model="data.email">
+            </label>
+            <label class="item item-input">
+              <input name="pwd" type="password" placeholder="Contraseña" ng-model="data.password">
+            </label>
+            <button class="button button-block button-stable" type="submit">Ingresar</button>
+            <button class="button button-block button-stable" ng-click="openModal()">Registrarse</button>
+          </form>
 
           <br>
 
@@ -77,9 +79,9 @@
           </div>
           <h5 class="proximamente">Proximamente</h5>
 
-          <button class="button button-block button-positive" ng-click="facebookSignIn()">Iniciar con Facebook</button>
-          <button class="button button-block button-assertive" ng-click="">Iniciar con Google+</button>
-          <button class="button button-block button-calm" ng-click="facebookSignIn()">Iniciar con Twitter</button>
+          <button class="button button-block button-positive">Iniciar con Facebook</button>
+          <button class="button button-block button-assertive">Iniciar con Google+</button>
+          <button class="button button-block button-calm">Iniciar con Twitter</button>
         </div>
 
       </ion-content>

@@ -26,7 +26,13 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     enableFriends: true
   };
   $scope.salir = function() {
-    $state.go('login');
+    firebase.auth().signOut().then(function() {
+      $state.go('login');
+    }, function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
   }
 })
 
@@ -68,51 +74,74 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
 })
 
-.controller('WelcomeCtrl', function($scope, $state, $q, UserService, $ionicLoading, $ionicModal) {
+.controller('WelcomeCtrl', function($scope, $state, $q, $ionicLoading, $ionicModal, $stateParams) {
 
-      $ionicModal.fromTemplateUrl('registrarUsuario.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        $scope.modal = modal;
-      });
-      $scope.openModal = function() {
-        $scope.modal.show();
-      };
-      $scope.closeModal = function() {
-        $scope.modal.hide();
-      };
-      // Cleanup the modal when we're done with it!
-      $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-      });
-      // Execute action on hide modal
-      $scope.$on('modal.hidden', function() {
-        // Execute action
-      });
-      // Execute action on remove modal
-      $scope.$on('modal.removed', function() {
-        // Execute action
-      });
+  $ionicModal.fromTemplateUrl('registrarUsuario.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  // Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
-      // REGISTRAR USUARIO DESDE FORMULARIO - $ionicModal
-      $scope.data = {};
-      $scope.registrar = function(formRegistro) {
+  $scope.data = {};
+  // REGISTRAR USUARIO DESDE FORMULARIO - $ionicModal
 
-        var email = $scope.data.email;
-        var password = $scope.data.password;
+  $scope.registrar = function(formRegistro) {
 
-        //Esta funcion se activa con el boton registrar
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-          if (error.code) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorMessage);
-          }else{
-              closeModal();
-          }
-        });
-        };
+    var email = $scope.data.email;
+    var password = $scope.data.password;
 
+    // Registro de usuario
+    var something = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      if (error.code) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      }
 
-      });
+      if ($stateParams.toWhere != null) {
+      $state.go($stateParams.toWhere.name);
+    } else {
+      $state.go('login');
+    }
+    });
+  };
+
+  // VALIDAR USUARIO PARA SU INGRESO
+  // $scope.ingresar = function(formIngreso) {
+  //
+  //   var email = $scope.data.email;
+  //   var password = $scope.data.password;
+  //
+  //   // Validacion de datos de usuario
+  //   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  //     if (error.code) {
+  //       var errorCode = error.code;
+  //       var errorMessage = error.message;
+  //       console.log(errorMessage);
+  //   }
+  //   });
+  // }
+
+  $scope.ingresar = function(){
+      $state.go('tab.dash');
+  }
+});
