@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic', 'ngMessages'])
+angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
 .controller('DashCtrl', function($scope) {})
 
@@ -21,12 +21,12 @@ angular.module('starter.controllers', ['ionic', 'ngMessages'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope,$state) {
+.controller('AccountCtrl', function($scope, $state) {
   $scope.settings = {
     enableFriends: true
   };
-  $scope.salir = function(){
-      $state.go('login');
+  $scope.salir = function() {
+    $state.go('login');
   }
 })
 
@@ -69,166 +69,50 @@ angular.module('starter.controllers', ['ionic', 'ngMessages'])
 })
 
 .controller('WelcomeCtrl', function($scope, $state, $q, UserService, $ionicLoading, $ionicModal) {
-  // This is the success callback from the login method
-  var fbLoginSuccess = function(response) {
-    if (!response.authResponse){
-      fbLoginError("Cannot find the authResponse");
-      return;
-    }
 
-    var authResponse = response.authResponse;
-
-    getFacebookProfileInfo(authResponse)
-    .then(function(profileInfo) {
-      // For the purpose of this example I will store user data on local storage
-      UserService.setUser({
-        authResponse: authResponse,
-				userID: profileInfo.id,
-				name: profileInfo.name,
-				email: profileInfo.email,
-        picture : "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
+      $ionicModal.fromTemplateUrl('registrarUsuario.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
       });
-      $ionicLoading.hide();
-      $state.go('app.home');
-    }, function(fail){
-      // Fail get profile info
-      console.log('profile info fail', fail);
-    });
-  };
+      $scope.openModal = function() {
+        $scope.modal.show();
+      };
+      $scope.closeModal = function() {
+        $scope.modal.hide();
+      };
+      // Cleanup the modal when we're done with it!
+      $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+      });
+      // Execute action on hide modal
+      $scope.$on('modal.hidden', function() {
+        // Execute action
+      });
+      // Execute action on remove modal
+      $scope.$on('modal.removed', function() {
+        // Execute action
+      });
 
-  // This is the fail callback from the login method
-  var fbLoginError = function(error){
-    console.log('fbLoginError', error);
-    $ionicLoading.hide();
-  };
+      // REGISTRAR USUARIO DESDE FORMULARIO - $ionicModal
+      $scope.data = {};
+      $scope.registrar = function(formRegistro) {
 
-  // This method is to get the user profile info from the facebook api
-  var getFacebookProfileInfo = function (authResponse) {
-    var info = $q.defer();
+        var email = $scope.data.email;
+        var password = $scope.data.password;
 
-    facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
-      function (response) {
-				console.log(response);
-        info.resolve(response);
-      },
-      function (response) {
-				console.log(response);
-        info.reject(response);
-      }
-    );
-    return info.promise;
-  };
-
-
-  $ionicModal.fromTemplateUrl('registrarUsuario.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-  $scope.openModal = function() {
-    $scope.modal.show();
-  };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-  // Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-  });
-
-  // REGISTRAR USUARIO DESDE FORMILARIO - $ionicModal
-  $scope.data = {};
-  $scope.registrar = function(formRegistro){
-
-  var ref = new Firebase("https://restobrc.firebaseio.com");
-
-  ref.createUser({
-    email: $scope.data.email,
-    password: $scope.data.password
-  }, function(error, userData) {
-    if (error) {
-      console.log("Error creating user:", error);
-    } else {
-      console.log("Successfully created user account with uid:", userData.uid);
-    }
-  });
-};
-
-  //Esta funcion se activa con el boton ingresar
-
-$scope.ingresar = function(){
-
-  var ref = new Firebase("https://restobrc.firebaseio.com");
-
-  ref.authWithPassword({
-    email: $scope.data.email,
-    password: $scope.data.password
-  }, function(error, authData) {
-    if (error) {
-      console.log("Login Failed!", error);
-    } else {
-      $state.go('tab.dash');
-    }
-  });
-};
-
-  //This method is executed when the user press the "Login with facebook" button
-  $scope.facebookSignIn = function() {
-    facebookConnectPlugin.getLoginStatus(function(success){
-      if(success.status === 'connected'){
-        // The user is logged in and has authenticated your app, and response.authResponse supplies
-        // the user's ID, a valid access token, a signed request, and the time the access token
-        // and signed request each expire
-        console.log('getLoginStatus', success.status);
-
-    		// Check if we have our user saved
-    		var user = UserService.getUser('facebook');
-
-    		if(!user.userID){
-					getFacebookProfileInfo(success.authResponse)
-					.then(function(profileInfo) {
-						// For the purpose of this example I will store user data on local storage
-						UserService.setUser({
-							authResponse: success.authResponse,
-							userID: profileInfo.id,
-							name: profileInfo.name,
-							email: profileInfo.email,
-							picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
-						});
-
-						$state.go('app.home');
-					}, function(fail){
-						// Fail get profile info
-						console.log('profile info fail', fail);
-					});
-				}else{
-					$state.go('app.home');
-				}
-      } else {
-        // If (success.status === 'not_authorized') the user is logged in to Facebook,
-				// but has not authenticated your app
-        // Else the person is not logged into Facebook,
-				// so we're not sure if they are logged into this app or not.
-
-				console.log('getLoginStatus', success.status);
-
-				$ionicLoading.show({
-          template: 'Logging in...'
+        //Esta funcion se activa con el boton registrar
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+          if (error.code) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage);
+          }else{
+              closeModal();
+          }
         });
+        };
 
-				// Ask the permissions you need. You can learn more about
-				// FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
-        facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
-      }
-    });
-  };
-});
+
+      });
