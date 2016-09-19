@@ -2,7 +2,10 @@ angular.module('starter.services', [])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
-
+  var reportRef = firebase.database().ref('/restaurantes/').orderByKey();
+                  reportRef.on('child_added', function(data) {
+                    console.log(data.val().email, data.val().name);
+                  });
   // Some fake testing data
   var chats = [{
     id: 0,
@@ -32,9 +35,4 @@ angular.module('starter.services', [])
       return null;
     }
   };
-})
-
-.factory("Items", function($firebaseArray) {
-  var itemsRef = new Firebase("https://restobrc.firebaseio.com/usuarios");
-  return $firebaseArray(itemsRef);
 });
