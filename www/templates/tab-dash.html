@@ -1,21 +1,24 @@
-<ion-view view-title="Inicio" class="view-bg">
+<ion-view view-title="Inicio">
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
     </ion-nav-back-button>
   </ion-nav-bar>
-  <ion-content class="padding">
-      <ion-header-bar class="top">
+  <ion-content>
+      <ion-content>
+      <ion-header-bar>
         <h1 class="title">Items</h1>
         <button class="button button-icon ion-plus" ng-click="openModal()"></button>
       </ion-header-bar>
+      </ion-content>
 
-    <ion-content>
+      <ion-content>
         <h2>Bienvenidos a RestoBrc v1.0.0</h2>
       <ion-list>
         <ion-item ng-repeat="item in items">
           {{item.name}}
         </ion-item>
       </ion-list>
+      </ion-content>
     </ion-content>
 
     <!-- Formulario Modal para agregar item -->

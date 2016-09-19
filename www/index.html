@@ -54,6 +54,7 @@
     <ion-nav-view></ion-nav-view>
   </body>
 
+  <!-- scrip conteniendo el login -->
   <script id="templates/login.html" type="text/ng-template">
 
     <ion-view view-title="Login" name="login-view">
@@ -75,20 +76,20 @@
 
           <div>
             <h4>
-              Registrarse con Redes Sociales</h5>
+              Ingresar con Redes Sociales</h4>
           </div>
-          <h5 class="proximamente">Proximamente</h5>
+          <h5 class="proximamente">Proximamente</h5><br>
 
-          <button class="button button-block button-positive">Iniciar con Facebook</button>
-          <button class="button button-block button-assertive">Iniciar con Google+</button>
-          <button class="button button-block button-calm">Iniciar con Twitter</button>
+          <button class="button ion-social-facebook button-positive socialBtn"></button>
+          <button class="button ion-social-googleplus button-assertive socialBtn"></button>
+          <button class="button ion-social-twitter button-calm socialBtn"></button>
         </div>
 
       </ion-content>
     </ion-view>
   </script>
 
-  <!-- Formulario Modal para agregar item -->
+  <!-- Formulario Modal para registrar usuario -->
   <script id="registrarUsuario.html" type="text/ng-template">
     <ion-modal-view>
       <div class="list list-inset title_inicio_sesion">

@@ -102,46 +102,41 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
   });
 
   $scope.data = {};
-  // REGISTRAR USUARIO DESDE FORMULARIO - $ionicModal
 
+  // REGISTRAR USUARIO DESDE FORMULARIO - $ionicModal
   $scope.registrar = function(formRegistro) {
 
     var email = $scope.data.email;
     var password = $scope.data.password;
 
     // Registro de usuario
-    var something = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      if (error.code) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      }
-
-      if ($stateParams.toWhere != null) {
-      $state.go($stateParams.toWhere.name);
-    } else {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
       $state.go('login');
-    }
+    }, function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);
     });
   };
 
   // VALIDAR USUARIO PARA SU INGRESO
-  // $scope.ingresar = function(formIngreso) {
-  //
-  //   var email = $scope.data.email;
-  //   var password = $scope.data.password;
-  //
-  //   // Validacion de datos de usuario
-  //   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-  //     if (error.code) {
-  //       var errorCode = error.code;
-  //       var errorMessage = error.message;
-  //       console.log(errorMessage);
-  //   }
-  //   });
-  // }
+  $scope.ingresar = function(formIngreso) {
 
-  $scope.ingresar = function(){
+    var email = $scope.data.email;
+    var password = $scope.data.password;
+
+    // Validacion de datos de usuario
+    firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+      var user = firebase.auth().currentUser;
       $state.go('tab.dash');
+    }, function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
   }
+
+  // $scope.ingresar = function(){
+  //     $state.go('tab.dash');
+  // }
 });
