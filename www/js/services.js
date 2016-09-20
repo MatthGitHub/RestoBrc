@@ -32,9 +32,4 @@ angular.module('starter.services', [])
       return null;
     }
   };
-})
-
-.factory("Items", function($firebaseArray) {
-  var itemsRef = new Firebase("https://restobrc.firebaseio.com/usuarios");
-  return $firebaseArray(itemsRef);
 });

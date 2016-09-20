@@ -110,7 +110,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     var password = $scope.data.password;
 
     // Registro de usuario
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result){
       $state.go('login');
     }, function(error) {
       var errorCode = error.code;
@@ -136,7 +136,4 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     });
   }
 
-  // $scope.ingresar = function(){
-  //     $state.go('tab.dash');
-  // }
 });
