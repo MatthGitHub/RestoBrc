@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
-        controller: 'ListCtrl'
+        controller: ''
       }
     }
   })
