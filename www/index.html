@@ -18,6 +18,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+    <!-- Angular Message JS library -->
     <script src="lib/angular-messages/angular-messages.js"></script>
 
     <!-- your app's js -->
@@ -58,7 +59,7 @@
   <script id="templates/login.html" type="text/ng-template">
 
     <ion-view view-title="Login" name="login-view">
-      <ion-content class="padding background">
+      <ion-content class="padding background" scroll="false">
         <div class="list list-inset title_inicio_sesion">
           <form name="formIngreso" ng-submit="ingresar()">
             <h4 >Inicio de sesion local</h4>
@@ -74,10 +75,6 @@
 
           <br>
 
-          <div>
-            <h4>
-              Ingresar con Redes Sociales</h4>
-          </div>
           <h5 class="proximamente">Proximamente</h5><br>
 
           <button class="button ion-social-facebook button-positive socialBtn"></button>

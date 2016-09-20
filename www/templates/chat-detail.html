@@ -6,16 +6,20 @@
 -->
 <ion-view view-title="{{chat.name}}">
   <ion-nav-bar class="bar-stable">
-    <ion-nav-back-button>
+    <ion-nav-back-button class="button-clear">
     </ion-nav-back-button>
   </ion-nav-bar>
-  <ion-content class="padding">
-    <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{chat.lastText}}
-    </p>
-    <p>
-      Horarios de reserva disponibles
-    </p>
+  <ion-content class="padding bg-resto-details">
+    <img ng-src="{{chat.avatar}}" style="width: 100%; height: 180px">
+    <div>
+        <label>Direccion: </label><p>{{chat.direccion}}</p>
+    </div>
+    <div>
+        <label>Telefono: </label><p>{{chat.telefono}}</p>
+    </div>
+    <div>
+        <label>Horario: </label><p>{{chat.horario}}</p>
+    </div>
+    <button class="button button-block ion-plus redirectToReservas" ng-click="goReservas()"> Nueva Reserva</button>
   </ion-content>
 </ion-view>

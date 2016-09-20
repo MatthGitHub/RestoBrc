@@ -12,13 +12,18 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
   //});
 
   $scope.chats = Chats.all();
+
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $state) {
   $scope.chat = Chats.get($stateParams.chatId);
+
+  $scope.goReservas = function() {
+      $state.go('tab.dash');
+  }
 })
 
 .controller('AccountCtrl', function($scope, $state) {

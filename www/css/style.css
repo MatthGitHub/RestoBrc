@@ -24,3 +24,34 @@
     margin-bottom: 10px;
     font-size: 25px;
 }
+
+.redirectToReservas {
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0px;
+}
+
+.bg-resto-details label {
+    font-weight: bold;
+    color: #0992B8;
+}
+
+.bg-resto-details p {
+    font-style: oblique;
+}
+
+.bg-resto-details img {
+    border-radius: 10px;
+}
+
+.bg-resto-details div {
+    color: #757575;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.bg-resto-details button {
+    background-color: #3BB809;
+    color: white;
+    font-weight: bold;
+}
