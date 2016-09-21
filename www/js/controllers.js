@@ -54,12 +54,14 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
   $scope.reservar = function(formReserva) {
 
-    var nombre = $scope.data.nombre;
+    var userId = firebase.auth().currentUser.uid;
     var dia = $scope.data.dia;
+    var resto = $scope.chat.name;
 
     firebase.database().ref('reservas/').push({
-      username: nombre,
-      dia: dia
+      usuario: userId,
+      dia: dia,
+      restaurante: resto
     });
     $scope.modal.remove();
     $scope.modal.hide();

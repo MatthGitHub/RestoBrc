@@ -6,6 +6,7 @@ angular.module('starter.services', [])
   reportRef.on('child_added', function(data) {
     console.log(data.val().nombre, data.val().dia);
   });
+
   // Some fake testing data
   var chats = [{
     id: 0,
