@@ -18,7 +18,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $state,$ionicModal) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $state, $ionicModal) {
   $scope.chat = Chats.get($stateParams.chatId);
 
   $scope.goReservas = function() {
@@ -61,6 +61,8 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
       username: nombre,
       dia: dia
     });
+    $scope.modal.remove();
+    $scope.modal.hide();
   }
 
 })
