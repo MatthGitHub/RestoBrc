@@ -57,7 +57,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     var nombre = $scope.data.nombre;
     var dia = $scope.data.dia;
 
-    firebase.database().ref('reservas/').set({
+    firebase.database().ref('reservas/').push({
       username: nombre,
       dia: dia
     });

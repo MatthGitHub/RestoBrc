@@ -2,9 +2,9 @@ angular.module('starter.services', [])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
-  var reportRef = firebase.database().ref('/restaurantes/').orderByKey();
+  var reportRef = firebase.database().ref('/reservas/').orderByKey();
   reportRef.on('child_added', function(data) {
-    console.log(data.val().email, data.val().name);
+    console.log(data.val().nombre, data.val().dia);
   });
   // Some fake testing data
   var chats = [{
