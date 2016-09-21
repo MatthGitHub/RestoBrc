@@ -2,10 +2,6 @@ angular.module('starter.services', [])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
-  var reportRef = firebase.database().ref('/reservas/').orderByKey();
-  reportRef.on('child_added', function(data) {
-    console.log(data.val().nombre, data.val().dia);
-  });
 
   // Some fake testing data
   var chats = [{
@@ -50,6 +46,9 @@ angular.module('starter.services', [])
     tipo: 'Pasta'
   }];
 
+  console.log(chats);
+
+
   return {
     all: function() {
       return chats;
@@ -66,4 +65,34 @@ angular.module('starter.services', [])
       return null;
     }
   };
+})
+
+.factory('Reservas', function(){
+  var db = firebase.database();
+  var ref = db.ref('/reservas/');
+  var reservas = ref.once('value', function(data) {
+    var i = 0;
+    data.forEach(function(reserva) {
+      console.log('reserva a %s el dia %s ',reserva.val().restaurante, reserva.val().dia);
+   });
+  });
+
+
+  return {
+    all: function() {
+      return reservas;
+    },
+    remove: function(chat) {
+      chats.splice(chats.indexOf(chat), 1);
+    },
+    get: function(chatId) {
+      for (var i = 0; i < chats.length; i++) {
+        if (chats[i].id === parseInt(chatId)) {
+          return chats[i];
+        }
+      }
+      return null;
+    }
+  };
+
 });

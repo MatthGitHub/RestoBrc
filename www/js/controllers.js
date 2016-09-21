@@ -1,6 +1,10 @@
 angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
-.controller('DashCtrl', function($scope) {})
+.controller('ReservasCtrl', function($scope, Reservas) {
+  $scope.reservas = Reservas.all();
+
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -63,7 +67,6 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
       dia: dia,
       restaurante: resto
     });
-    $scope.modal.remove();
     $scope.modal.hide();
   }
 
