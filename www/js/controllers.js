@@ -18,12 +18,51 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $state) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $state,$ionicModal) {
   $scope.chat = Chats.get($stateParams.chatId);
 
   $scope.goReservas = function() {
       $state.go('tab.dash');
   }
+
+  $ionicModal.fromTemplateUrl('reservar.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  // Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+
+  $scope.data = {};
+
+  $scope.reservar = function(formReserva) {
+
+    var nombre = $scope.data.nombre;
+    var dia = $scope.data.dia;
+
+    firebase.database().ref('reservas/').set({
+      username: nombre,
+      dia: dia
+    });
+  }
+
 })
 
 .controller('AccountCtrl', function($scope, $state) {
