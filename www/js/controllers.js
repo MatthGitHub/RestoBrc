@@ -69,7 +69,6 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     });
     $scope.modal.hide();
   }
-
 })
 
 .controller('AccountCtrl', function($scope, $state) {
