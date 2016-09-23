@@ -2,8 +2,6 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
 .controller('ReservasCtrl', function($scope, Reservas) {
   $scope.reservas = Reservas.all();
-
-
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -26,7 +24,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
   $scope.chat = Chats.get($stateParams.chatId);
 
   $scope.goReservas = function() {
-      $state.go('tab.dash');
+    $state.go('tab.dash');
   }
 
   $ionicModal.fromTemplateUrl('reservar.html', {
@@ -123,7 +121,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     var password = $scope.data.password;
 
     // Registro de usuario
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result){
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
       $state.go('login');
     }, function(error) {
       var errorCode = error.code;
