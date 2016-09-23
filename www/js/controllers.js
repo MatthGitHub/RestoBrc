@@ -7,7 +7,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     Reservas.remove(reserva);
   };
 
-  
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

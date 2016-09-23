@@ -71,6 +71,7 @@ angular.module('starter.services', [])
   var db = firebase.database();
   var ref = db.ref('/reservas/');
   var reservas = [];
+
   var referencias = ref.on('value', function(data) {
     var i = 0;
     data.forEach(function(reserva) {
@@ -85,8 +86,6 @@ angular.module('starter.services', [])
       reservas.push(arr2);
    });
   });
-
-  console.log(reservas);
 
   return {
     all: function() {

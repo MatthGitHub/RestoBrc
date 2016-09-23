@@ -11,12 +11,10 @@
 }
 
 .proximamente{
-    border: 2px solid;
-    border-color: red;
-    border-radius: 5px;
     display: inline-block;
-    padding: 0 5px 0 5px;
-    background-color: red;
+    padding: 5px 5px 5px 5px;
+    width: 100%;
+    background-color: #B54C4C;
     color: white;
 }
 
