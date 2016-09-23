@@ -2,6 +2,12 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
 .controller('ReservasCtrl', function($scope, Reservas) {
   $scope.reservas = Reservas.all();
+
+  $scope.removeReserva = function(chat) {
+    Reservas.remove(reserva);
+  };
+
+  
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -15,7 +21,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
   $scope.chats = Chats.all();
 
-  $scope.remove = function(chat) {
+  $scope.removeChat = function(chat) {
     Chats.remove(chat);
   };
 })
