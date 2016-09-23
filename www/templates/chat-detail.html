@@ -31,18 +31,7 @@
     <button class="button button-block ion-plus redirectToReservas" ng-click="openModal()">
       Nueva Reserva</button>
   </ion-content>
-  
-<!-- Formulario Modal para registrar usuario -->
-<script id="reservar.html" type="text/ng-template">
-  <ion-modal-view>
-    <div class="list list-inset title_inicio_sesion">
-      <form name="formReserva" ng-submit="reservar()">
-        <h4 >Nueva reserva</h4>
-        <label class="item item-input">
-          <input name="dia" type="text" placeholder="Dia" ng-model="data.dia">
-        </label>
-        <button class="button button-block button-balanced" type="submit">Reservar</button>
-      </form>
+
   <!-- Formulario Modal para registrar usuario -->
   <script id="reservar.html" type="text/ng-template">
     <ion-modal-view>
@@ -59,7 +48,6 @@
             <button class="button button-block button-balanced" type="submit">Reservar</button>
           </form>
           <button class="button button-assertive" ng-click="closeModal()">Volver</button>
-
         </ion-content>
       </ion-modal-view>
   </script>
