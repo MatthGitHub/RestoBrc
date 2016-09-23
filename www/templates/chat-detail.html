@@ -4,43 +4,53 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
+
 <ion-view view-title="{{chat.name}}">
-  <ion-nav-bar class="bar-stable">
-    <ion-nav-back-button class="button-clear">
-    </ion-nav-back-button>
-  </ion-nav-bar>
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button class="button-clear">
+        <i class="ion-arrow-left-c"></i> Atras
+      </ion-nav-back-button>
+    </ion-nav-bar>
   <ion-content class="padding bg-resto-details">
     <img ng-src="{{chat.avatar}}" style="width: 100%; height: 180px">
     <div>
-        <label>Direccion: </label><p>{{chat.direccion}}</p>
+      <label>Direccion:
+      </label>
+      <p>{{chat.direccion}}</p>
     </div>
     <div>
-        <label>Telefono: </label><p>{{chat.telefono}}</p>
+      <label>Telefono:
+      </label>
+      <p>{{chat.telefono}}</p>
     </div>
     <div>
-        <label>Horario: </label><p>{{chat.horario}}</p>
+      <label>Horario:
+      </label>
+      <p>{{chat.horario}}</p>
     </div>
-    <button class="button button-block ion-plus redirectToReservas" ng-click="openModal()"> Nueva Reserva</button>
+    <button class="button button-block ion-plus redirectToReservas" ng-click="openModal()">
+      Nueva Reserva</button>
   </ion-content>
+
+  <!-- Formulario Modal para registrar usuario -->
+  <script id="reservar.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-content>
+        <div class="list list-inset title_inicio_sesion">
+          <form name="formReserva" ng-submit="reservar()">
+            <h4 >Nueva Reserva</h4>
+            <label class="item item-input">
+              <input name="nombre" type="text" placeholder="Nombre" ng-model="data.nombre">
+            </label>
+            <label class="item item-input">
+              <input name="dia" type="text" placeholder="Dia" ng-model="data.dia">
+            </label>
+            <button class="button button-block button-balanced" type="submit">Reservar</button>
+          </form>
+
+          <button class="button button-assertive" ng-click="closeModal()">Volver</button>
+
+        </ion-content>
+      </ion-modal-view>
+  </script>
 </ion-view>
-
-<!-- Formulario Modal para registrar usuario -->
-<script id="reservar.html" type="text/ng-template">
-  <ion-modal-view>
-    <div class="list list-inset title_inicio_sesion">
-      <form name="formReserva" ng-submit="reservar()">
-        <h4 >Registro de Usuario</h4>
-        <label class="item item-input">
-          <input name="nombre" type="text" placeholder="Nombre" ng-model="data.nombre">
-        </label>
-        <label class="item item-input">
-          <input name="dia" type="text" placeholder="Dia" ng-model="data.dia">
-        </label>
-        <button class="button button-block button-balanced" type="submit">Reservar</button>
-      </form>
-
-      <button class="button button-assertive" ng-click="closeModal()">Volver</button>
-
-    </ion-content>
-  </ion-modal-view>
-</script>
