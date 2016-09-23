@@ -70,25 +70,35 @@ angular.module('starter.services', [])
 .factory('Reservas', function(){
   var db = firebase.database();
   var ref = db.ref('/reservas/');
-  var reservas = ref.once('value', function(data) {
+  var reservas = [];
+  var referencias = ref.once('value', function(data) {
     var i = 0;
     data.forEach(function(reserva) {
+      i++;
+      var arr2 = {};
       console.log('reserva a %s el dia %s ',reserva.val().restaurante, reserva.val().dia);
+      arr2 = {
+        id:i,
+        restaurante: reserva.val().restaurante,
+        dia: reserva.val().dia
+       };
+      reservas.push(arr2);
    });
   });
 
+  console.log(reservas);
 
   return {
     all: function() {
       return reservas;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    remove: function(reserva) {
+      chats.splice(chats.indexOf(reserva), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function(reservaId) {
+      for (var i = 0; i < reservas.length; i++) {
+        if (reservas[i].id === parseInt(reservaId)) {
+          return reservas[i];
         }
       }
       return null;
