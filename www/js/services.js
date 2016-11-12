@@ -65,48 +65,48 @@ angular.module('starter.services', [])
       return null;
     }
   };
-})
-
-.factory('Reservas', function(){
-  var db = firebase.database();
-  var ref = db.ref('/reservas/');
-  var reservas = [];
-
-  var referencias = ref.on('value', function(data) {
-    var i = 0;
-    data.forEach(function(reserva) {
-      i++;
-      var arr2 = {};
-      console.log('reserva a %s el dia %s ',reserva.val().restaurante, reserva.val().dia);
-
-      arr2 = {
-        id:i,
-        restaurante: reserva.val().restaurante,
-        dia: reserva.val().dia,
-        usuario: reserva.val().usuario
-       };
-                 if(arr2.usuario == firebase.auth().currentUser.uid){
-                    reservas.push(arr2);
-                 }
-
-   });
-  });
-
-  return {
-    all: function() {
-      return reservas;
-    },
-    remove: function(reserva) {
-      restorantes.splice(chats.indexOf(reserva), 1);
-    },
-    get: function(reservaId) {
-      for (var i = 0; i < reservas.length; i++) {
-        if (reservas[i].id === parseInt(reservaId)) {
-          return reservas[i];
-        }
-      }
-      return null;
-    }
-  };
-
 });
+//
+// .factory('Reservas', function(){
+//   var db = firebase.database();
+//   var ref = db.ref('/reservas/');
+//   var reservas = [];
+//
+//   var referencias = ref.on('value', function(data) {
+//     var i = 0;
+//     data.forEach(function(reserva) {
+//       i++;
+//       var arr2 = {};
+//       console.log('reserva a %s el dia %s ',reserva.val().restaurante, reserva.val().dia);
+//
+//       arr2 = {
+//         id:i,
+//         restaurante: reserva.val().restaurante,
+//         dia: reserva.val().dia,
+//         usuario: reserva.val().usuario
+//        };
+//                  if(arr2.usuario == firebase.auth().currentUser.uid){
+//                     reservas.push(arr2);
+//                  }
+//
+//    });
+//   });
+//
+//   return {
+//     all: function() {
+//       return reservas;
+//     },
+//     remove: function(reserva) {
+//       restorantes.splice(chats.indexOf(reserva), 1);
+//     },
+//     get: function(reservaId) {
+//       for (var i = 0; i < reservas.length; i++) {
+//         if (reservas[i].id === parseInt(reservaId)) {
+//           return reservas[i];
+//         }
+//       }
+//       return null;
+//     }
+//   };
+//
+// });
