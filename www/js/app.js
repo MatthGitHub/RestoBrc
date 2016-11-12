@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','firebase', 'ngMessages'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,6 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     }
   });
 })
+
 // Funcion para mover las tab a la parte inferior por defecto en
 // todos los dispositivos (iOS - Android)
 .config(function($ionicConfigProvider) {
@@ -56,7 +57,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
-        controller: 'ReservasCtrl'
+        controller: 'ReservasCtrl',
+        authRequired: true
       }
     }
   })
@@ -66,7 +68,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
       views: {
         'tab-chats': {
           templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+          controller: 'ChatsCtrl',
+          authRequired: true
         }
       }
     })
@@ -75,7 +78,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+          controller: 'ChatDetailCtrl',
+          authRequired: true
         }
       }
     })
@@ -85,7 +89,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        controller: 'AccountCtrl',
+        authRequired: true
       }
     }
   })
