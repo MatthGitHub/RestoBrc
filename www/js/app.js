@@ -66,26 +66,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
   .state('tab.restorantes', {
       url: '/restorantes',
       views: {
-
-        'tab-restorantes': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'RestorantesCtrl',
-         authRequired: true
-         },
-
         'tab-restorantes': {
           templateUrl: 'templates/tab-restorantes.html',
-          controller: 'RestorantesCtrl'
-
+          controller: 'RestorantesCtrl',
+         authRequired: true
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.restorante-detail', {
+      url: '/restorantes/:restoranteId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl',
+        'tab-restorantes': {
+          templateUrl: 'templates/restorante-detail.html',
+          controller: 'RestorantesDetailCtrl',
           authRequired: true
         }
       }

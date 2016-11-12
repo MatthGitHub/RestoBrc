@@ -58,7 +58,7 @@ angular.module('starter.services', [])
     },
     get: function(restoranteId) {
       for (var i = 0; i < restorantes.length; i++) {
-        if (chats[i].id === parseInt(restoranteId)) {
+        if (restorantes[i].id === parseInt(restoranteId)) {
           return restorantes[i];
         }
       }
@@ -97,7 +97,7 @@ angular.module('starter.services', [])
       return reservas;
     },
     remove: function(reserva) {
-      chats.splice(chats.indexOf(reserva), 1);
+      restorantes.splice(chats.indexOf(reserva), 1);
     },
     get: function(reservaId) {
       for (var i = 0; i < reservas.length; i++) {

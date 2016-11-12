@@ -64,7 +64,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
     var userId = firebase.auth().currentUser.uid;
     var dia = $scope.data.dia;
-    var resto = $scope.chat.name;
+    var resto = $scope.restorante.name;
 
     firebase.database().ref('reservas/').push({
       usuario: userId,
