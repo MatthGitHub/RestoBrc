@@ -1,13 +1,23 @@
 angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
-.controller('ReservasCtrl', function($scope, Reservas) {
-  $scope.reservas = Reservas.all();
+.controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
+  var options = {timeout: 10000, enableHighAccuracy: true};
 
-  $scope.removeReserva = function(chat) {
-    Reservas.remove(reserva);
-  };
+  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
 
+    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
+    var mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+  }, function(error){
+    console.log("Could not get location");
+  });
 })
 
 .controller('RestorantesCtrl', function($scope, Restorantes) {
@@ -30,7 +40,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
   $scope.restorante = Restorantes.get($stateParams.restoranteId);
 
   $scope.goReservas = function() {
-    $state.go('tab.dash');
+    $state.go('tab.map');
   }
 
   $ionicModal.fromTemplateUrl('reservar.html', {
@@ -145,7 +155,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
     // Validacion de datos de usuario
     firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
       var user = firebase.auth().currentUser;
-      $state.go('tab.dash');
+      $state.go('tab.map');
     }, function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
