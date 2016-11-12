@@ -78,12 +78,17 @@ angular.module('starter.services', [])
       i++;
       var arr2 = {};
       console.log('reserva a %s el dia %s ',reserva.val().restaurante, reserva.val().dia);
+      
       arr2 = {
         id:i,
         restaurante: reserva.val().restaurante,
-        dia: reserva.val().dia
+        dia: reserva.val().dia,
+        usuario: reserva.val().usuario
        };
-      reservas.push(arr2);
+                 if(arr2.usuario = firebase.auth().currentUser.uid){
+                    reservas.push(arr2);
+                 }
+      
    });
   });
 
