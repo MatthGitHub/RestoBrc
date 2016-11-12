@@ -40,14 +40,11 @@
           <form name="formReserva" ng-submit="reservar()">
             <h4 >Nueva Reserva</h4>
             <label class="item item-input">
-              <input name="nombre" type="text" placeholder="Nombre" ng-model="data.nombre">
-            </label>
-            <label class="item item-input">
               <input name="dia" type="text" placeholder="Dia" ng-model="data.dia">
             </label>
             <button class="button button-block button-balanced" type="submit">Reservar</button>
           </form>
-          <button class="button button-assertive" ng-click="closeModal()">Volver</button>
+          <button class="button button-assertive button-block " ng-click="closeModal()">Volver</button>
         </ion-content>
       </ion-modal-view>
   </script>

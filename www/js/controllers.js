@@ -10,7 +10,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('RestorantesCtrl', function($scope, Restorantes) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -19,15 +19,15 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
+  $scope.restorantes = Restorantes.all();
 
-  $scope.removeChat = function(chat) {
-    Chats.remove(chat);
+  $scope.removeRestorante = function(restorante) {
+    Restorantes.remove(restorante);
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $state, $ionicModal) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('RestorantesDetailCtrl', function($scope, $stateParams, Restorantes, $state, $ionicModal) {
+  $scope.restorante = Restorantes.get($stateParams.restoranteId);
 
   $scope.goReservas = function() {
     $state.go('tab.dash');

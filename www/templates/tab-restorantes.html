@@ -3,10 +3,10 @@
     </ion-nav-bar>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.avatar}}">
-        <h2>{{chat.name}}</h2>
-        <h4>{{chat.tipo}}</h4>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="restorante in restorantes" type="item-text-wrap" href="#/tab/chats/{{restorante.id}}">
+        <img ng-src="{{restorante.avatar}}">
+        <h2>{{restorante.name}}</h2>
+        <h4>{{restorante.tipo}}</h4>
         <i class="icon ion-arrow-right-b icon-accessory" style="font-size: 28px; color: #046687"></i>
       </ion-item>
     </ion-list>
