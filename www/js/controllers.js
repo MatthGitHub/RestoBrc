@@ -173,7 +173,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
 })
 
-
+//Controlador para calendario
 .controller('CalendarCtrl', function ($scope, $cordovaCalendar) {
 
   $cordovaCalendar.createCalendar({
