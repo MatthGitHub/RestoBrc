@@ -84,6 +84,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
       }
     })
 
+    .state('tab.misreservas', {
+        url: '/misreservas',
+        views: {
+          'tab-misreservas': {
+            templateUrl: 'templates/tab-misreservas.html',
+            controller: 'ReservasCtrl',
+           authRequired: true
+          }
+        }
+      })
+
   .state('tab.account', {
     url: '/account',
     views: {
