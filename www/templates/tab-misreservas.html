@@ -3,7 +3,7 @@
       </ion-nav-back-button>
     </ion-nav-bar>
   <ion-content>
-    <ion-list cache-view="false">
+    <ion-list>
       <ion-item class="item item-icon-left" ng-repeat="reserva in reservas track by reservas.id" type="item-text-wrap">
         <i class="icon ion-calendar"></i><h2>{{reserva.restaurante}}</h2>
         <h4>{{reserva.dia}}</h4>

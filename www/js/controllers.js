@@ -1,11 +1,11 @@
 angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
 
 .controller('ReservasCtrl', function($scope, Reservas) {
-
+  $scope.reservas = Reservas.all();
 
   $scope.$on('tab.misreservas.enter', function() {
   // code to run each time view is entered
-    $scope.reservas = Reservas.all();
+  
   });
   $scope.removeReserva = function(reserva) {
     Reservas.remove(reserva);
