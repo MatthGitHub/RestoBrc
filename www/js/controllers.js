@@ -18,6 +18,24 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
   };
 })
 
+.controller('ReservasCtrl', function($scope, Reservas) {
+  $scope.reservas = Reservas.all();
+
+  $scope.$on('tab.misreservas:listChanged', function() {
+    $scope.updateList();
+  });
+
+  $scope.updateList = function() {
+    Todo.getAll().success(function(data) {
+        $scope.items = data.results;
+    });
+  };
+
+  $scope.removeReserva = function(reserva) {
+    Reservas.remove(reserva);
+  };
+})
+
 .controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
   var options = {timeout: 10000, enableHighAccuracy: true};
 
