@@ -1,5 +1,23 @@
 angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCordova'])
 
+.controller('ReservasCtrl', function($scope, Reservas) {
+  $scope.reservas = Reservas.all();
+
+  $scope.$on('tab.misreservas:listChanged', function() {
+    $scope.updateList();
+  });
+
+  $scope.updateList = function() {
+    Todo.getAll().success(function(data) {
+        $scope.items = data.results;
+    });
+  };
+
+  $scope.removeReserva = function(reserva) {
+    Reservas.remove(reserva);
+  };
+})
+
 .controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
   var options = {timeout: 10000, enableHighAccuracy: true};
 
@@ -40,9 +58,37 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
   $scope.restorante = Restorantes.get($stateParams.restoranteId);
 
   $scope.goReservas = function() {
-    $state.go('tab.map');
+    $state.go('tab.misreservas');
   }
 
+  //Controlador Ionic DatePikcer
+  var ipObj1 = {
+   callback: function (val) {  //Mandatory
+     console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+   },
+   disabledDates: [            //Optional
+     new Date(2016, 2, 16),
+     new Date(2015, 3, 16),
+     new Date(2015, 4, 16),
+     new Date(2015, 5, 16),
+     new Date('Wednesday, August 12, 2015'),
+     new Date("08-16-2016"),
+     new Date(1439676000000)
+   ],
+   from: new Date(2012, 1, 1), //Optional
+   to: new Date(2016, 10, 30), //Optional
+   inputDate: new Date(),      //Optional
+   mondayFirst: true,          //Optional
+   disableWeekdays: [0],       //Optional
+   closeOnSelect: false,       //Optional
+   templateType: 'popup'       //Optional
+ };
+
+ $scope.openDatePicker = function(){
+   ionicDatePicker.openDatePicker(ipObj1);
+ };
+
+  //Ventana modal de reserva
   $ionicModal.fromTemplateUrl('reservar.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -76,11 +122,17 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
     var dia = $scope.data.dia;
     var resto = $scope.restorante.name;
 
+    console.log(dia);
+
     firebase.database().ref('reservas/').push({
       usuario: userId,
       dia: dia,
       restaurante: resto
-    });
+      // function(data) {
+      //   $scope.$emit('tab.misreservas:listChanged');
+      //   $state.go('tab.misreservas');
+        });
+
     $scope.modal.hide();
   }
 })
@@ -163,4 +215,5 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
     });
   }
 
-});
+})
+;

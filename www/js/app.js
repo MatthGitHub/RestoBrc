@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','firebase', 'ngMessages'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','firebase', 'ngMessages','ionic-datepicker'])
 
 .run(function($ionicPlatform, $rootScope, $state) {
   $ionicPlatform.ready(function() {
@@ -22,6 +22,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     }
   });
 })
+//Configuracion DatePicker
+.config(function (ionicDatePickerProvider) {
+    var datePickerObj = {
+      inputDate: new Date(),
+      titleLabel: 'Select a Date',
+      setLabel: 'Set',
+      todayLabel: 'Today',
+      closeLabel: 'Close',
+      mondayFirst: false,
+      weeksList: ["S", "M", "T", "W", "T", "F", "S"],
+      monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+      templateType: 'popup',
+      from: new Date(2012, 8, 1),
+      to: new Date(2018, 8, 1),
+      showTodayButton: true,
+      dateFormat: 'dd MMMM yyyy',
+      closeOnSelect: false,
+      disableWeekdays: []
+    };
+    ionicDatePickerProvider.configDatePicker(datePickerObj);
+  })
 
 // Funcion para mover las tab a la parte inferior por defecto en
 // todos los dispositivos (iOS - Android)
@@ -83,6 +104,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
         }
       }
     })
+
+    .state('tab.misreservas', {
+        url: '/misreservas',
+        views: {
+          'tab-misreservas': {
+            templateUrl: 'templates/tab-misreservas.html',
+            controller: 'ReservasCtrl',
+           authRequired: true
+          }
+        }
+      })
 
   .state('tab.account', {
     url: '/account',
