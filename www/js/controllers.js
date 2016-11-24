@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase'])
+angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCordova'])
 
 .controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
   var options = {timeout: 10000, enableHighAccuracy: true};
