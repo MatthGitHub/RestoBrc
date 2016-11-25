@@ -3,15 +3,6 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
 .controller('ReservasCtrl', function($scope, Reservas) {
   $scope.reservas = Reservas.all();
 
-  $scope.$on('tab.misreservas:listChanged', function() {
-    $scope.updateList();
-  });
-
-  $scope.updateList = function() {
-    Todo.getAll().success(function(data) {
-        $scope.items = data.results;
-    });
-  };
 
   $scope.removeReserva = function(reserva) {
     Reservas.remove(reserva);
@@ -64,24 +55,10 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
   //Controlador Ionic DatePikcer
   var ipObj1 = {
    callback: function (val) {  //Mandatory
-     console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-   },
-   disabledDates: [            //Optional
-     new Date(2016, 2, 16),
-     new Date(2015, 3, 16),
-     new Date(2015, 4, 16),
-     new Date(2015, 5, 16),
-     new Date('Wednesday, August 12, 2015'),
-     new Date("08-16-2016"),
-     new Date(1439676000000)
-   ],
-   from: new Date(2012, 1, 1), //Optional
-   to: new Date(2016, 10, 30), //Optional
-   inputDate: new Date(),      //Optional
-   mondayFirst: true,          //Optional
-   disableWeekdays: [0],       //Optional
-   closeOnSelect: false,       //Optional
-   templateType: 'popup'       //Optional
+     fecha = new Date(val);
+     console.log('Return value from the datepicker popup is : ' + val, fecha);
+     $scope.dia = fecha.getDate()+"/"+fecha.getMonth();
+   }
  };
 
  $scope.openDatePicker = function(){
@@ -119,7 +96,12 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
   $scope.reservar = function(formReserva) {
 
     var userId = firebase.auth().currentUser.uid;
-    var dia = $scope.data.dia;
+    if($scope.dia == null){
+      var dia = $scope.data.dia.getDate()+"/"+$scope.data.dia.getMonth();
+    }else{
+      var dia = $scope.dia;
+    }
+
     var resto = $scope.restorante.name;
 
     console.log(dia);

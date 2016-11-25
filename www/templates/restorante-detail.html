@@ -40,9 +40,14 @@
           <form name="formReserva" ng-submit="reservar()">
             <h4 >Nueva Reserva</h4>
             <label class="item item-input">
+     <span class="input-label">Calendario</span>
+        <ionic-datepicker idate="currentItem.DatePickerDate" ng-click="openDatePicker()">
+          <input > {{ var | date:'dd - MM - yyyy' }} </input>
+        </ionic-datepicker>
+        </label>
+            <label class="item item-input">
               <input name="dia" type="date" placeholder="Dia" ng-model="data.dia">
             </label>
-            <button class="button button-block button-balanced" ng-click="openDatePicker()">Seleccionar Fecha</button>
             <button class="button button-block button-balanced" type="submit">Reservar</button>
           </form>
           <button class="button button-assertive button-block " ng-click="closeModal()">Volver</button>
