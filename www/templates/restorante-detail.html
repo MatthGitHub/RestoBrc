@@ -48,7 +48,25 @@
             <label class="item item-input">
               <input name="dia" type="date" placeholder="Dia" ng-model="data.dia">
             </label>
+
+            <div class="list">
+              <label class="item item-input item-select">
+                <div class="input-label">
+                  Comensales
+                </div>
+                <select ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+              </label>
+            </div>
+
             <button class="button button-block button-balanced" type="submit">Reservar</button>
+
           </form>
           <button class="button button-assertive button-block " ng-click="closeModal()">Volver</button>
         </ion-content>

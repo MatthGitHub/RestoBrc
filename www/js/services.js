@@ -83,6 +83,7 @@ angular.module('starter.services', [])
         id:i,
         restaurante: reserva.val().restaurante,
         dia: reserva.val().dia,
+        personas: reserva.val().comensales,
         usuario: reserva.val().usuario
        };
                  if(arr2.usuario == firebase.auth().currentUser.uid){

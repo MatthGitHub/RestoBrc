@@ -52,6 +52,11 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
     $state.go('tab.misreservas');
   }
 
+  $scope.showSelectValue = function(mySelect) {
+    $scope.data.comensales = mySelect;
+    console.log(mySelect);
+  }
+
   //Controlador Ionic DatePikcer
   var ipObj1 = {
    callback: function (val) {  //Mandatory
@@ -101,14 +106,23 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
     }else{
       var dia = $scope.dia;
     }
+    if($scope.data.comensale == null){
+      var comensales = 2;
+    }else{
+        var comensales = $scope.data.comensales;
+    }
 
     var resto = $scope.restorante.name;
+    var restoId = $scope.restorante.id;
+
 
     console.log(dia);
 
     firebase.database().ref('reservas/').push({
       usuario: userId,
       dia: dia,
+      restauranteId: restoId,
+      comensales: comensales,
       restaurante: resto
       // function(data) {
       //   $scope.$emit('tab.misreservas:listChanged');
