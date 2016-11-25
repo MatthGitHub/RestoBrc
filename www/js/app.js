@@ -22,6 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
     }
   });
 })
+
 //Configuracion DatePicker
 .config(function (ionicDatePickerProvider) {
     var datePickerObj = {

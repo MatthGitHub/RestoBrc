@@ -1,22 +1,4 @@
-angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCordova'])
-
-.controller('ReservasCtrl', function($scope, Reservas) {
-  $scope.reservas = Reservas.all();
-
-  $scope.$on('tab.misreservas:listChanged', function() {
-    $scope.updateList();
-  });
-
-  $scope.updateList = function() {
-    Todo.getAll().success(function(data) {
-        $scope.items = data.results;
-    });
-  };
-
-  $scope.removeReserva = function(reserva) {
-    Reservas.remove(reserva);
-  };
-})
+angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCordova', 'ionic-datepicker'])
 
 .controller('ReservasCtrl', function($scope, Reservas) {
   $scope.reservas = Reservas.all();
@@ -72,7 +54,7 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
   };
 })
 
-.controller('RestorantesDetailCtrl', function($scope, $stateParams, Restorantes, $state, $ionicModal) {
+.controller('RestorantesDetailCtrl', function($scope, $stateParams, Restorantes, $state, $ionicModal, ionicDatePicker) {
   $scope.restorante = Restorantes.get($stateParams.restoranteId);
 
   $scope.goReservas = function() {

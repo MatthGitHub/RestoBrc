@@ -32,7 +32,7 @@
       Nueva Reserva</button>
   </ion-content>
 
-  <!-- Formulario Modal para registrar usuario -->
+  <!-- Formulario Modal para registrar Reserva -->
   <script id="reservar.html" type="text/ng-template">
     <ion-modal-view>
       <ion-content>
@@ -42,10 +42,12 @@
             <label class="item item-input">
               <input name="dia" type="date" placeholder="Dia" ng-model="data.dia">
             </label>
+            <button class="button button-block button-balanced" ng-click="openDatePicker()">Seleccionar Fecha</button>
             <button class="button button-block button-balanced" type="submit">Reservar</button>
           </form>
           <button class="button button-assertive button-block " ng-click="closeModal()">Volver</button>
         </ion-content>
       </ion-modal-view>
   </script>
+
 </ion-view>
