@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agregar Restaurante</title>
+
+    <style media="screen">
+      #uploader {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body ng-controller="addRestoCtrl">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">RestoBrc - CP</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#/inicio">Inicio</a></li>
+          <li><a href="#/reservas">Reservas</a></li>
+          <li class="active"><a href="#/addresto">Agregar Restaurante</a></li>
+        </ul>
+
+      </ul>
+         <ul class="nav navbar-nav" style="float: right">
+         <li><a href="#contact" class="navbar-nav pull-right">Cerrar Sesion</a></li>
+       </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="panel col-md-6 col-md-offset-3" style="padding-top:0; padding-bottom:0;">
+          <h3>Agregar nuevo Restaurante</h3>
+      </div>
+        <div class="panel-body">
+          <form name="addRestoForm" ng-submit="agregarResto()">
+            <div class="form-group col-md-6 col-md-offset-3">
+              <label for="nombre">Nombre</label>
+              <input class="form-control" type="text" name="nombre" ng-model="resto.nombre" placeholder="Nombre" required="" />
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3">
+              <label for="calle">Calle</label>
+              <input class="form-control" type="text" name="calle" ng-model="resto.calle" placeholder="Calle" required="" />
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3">
+              <label for="nro">Nro</label>
+              <input class="form-control" type="number" name="nro" ng-model="resto.nro" placeholder="Nro." required="" />
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3">
+                <label for="ca">Codigo Area</label>
+                <input class="form-control" type="tel" name="ca" ng-model="resto.ca" placeholder="Codigo de Area" required="" />
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3">
+              <label for="telefono">Telefono</label>
+              <input class="form-control" type="tel" name="telefono" ng-model="resto.telefono" placeholder="Telefono" required="" />
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3">
+              <label for="ciudad">Ciudad</label>
+              <input class="form-control" type="text" name="cp" ng-model="resto.ciudad" placeholder="Ciudad" required="" />
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3">
+              <label for="provincia">Provincia</label>
+              <input class="form-control" type="text" name="provincia" ng-model="resto.provincia" placeholder="Rio Negro, etc.." required="" />
+            </div>
+            <!-- <div class="form-group col-md-6 col-md-offset-3">
+              <label for="file">Subir Foto</label>
+              <input accept="image/*" id="fileButton" class="form-control" type="file" name="file" ng-model="files" required="" />
+              <progress value="0" max="100" id="uploader">0%</progress>
+            </div> -->
+            <div class=" col-md-6 col-md-offset-3">
+              <button id="agregar" type="submit" class="btn btn-lg btn-primary btn-block"> Agregar </button>
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT para hacer el upload de la imagen previa al submit del form - No Funcional al momento-->
+    <script>
+    // Setear variable de progress bar y upload button
+    var uploader = document.getElementById('uploader');
+    var fileButton = document.getElementById('fileButton');
+
+    // Listener
+    fileButton.addEventListener('change', function(e){
+      // Get File
+      var file = e.target.files[0];
+      console.log(file);
+
+      // Get storage ref
+      var storageRef = firebase.storage().ref('img/' + file.name);
+
+      // Upload File
+      var task = storageRef.put(file);
+
+      // Update Progress bar
+      task.on('state_changed',
+
+        function progress(snapshot){
+          var percentaje = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          uploader.value = percentaje;
+        },
+        function error(err){
+
+        },
+        function (){
+          var downloadUrl = task.snapshot.downloadURL;
+          console.log(downloadUrl);
+        }
+      );
+    });
+    </script>
+  </body>
+</html>

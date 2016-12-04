@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Inicio de Sesion</title>
+
+</head>
+
+<body ng-controller="HomeCtrl">
+    <div class="container">
+      <div class="panel panel-default col-md-6 col-md-offset-3" style="padding-top:0; padding-bottom:0;">
+        <h3>Inicio de Sesion</h3>
+        <div class="panel-body">
+          <form name="loginForm" ng-submit="ingresar()">
+            <div class="form-group col-md-6 col-md-offset-3" ng-class="{'has-error': loginForm.email.$invalid &&
+            loginForm.email.$touched}">
+              <label for="email">Correo</label>
+              <input class="form-control" type="email" name="email" ng-model="user.email" placeholder="Direccion de Correo" required="" />
+              <small class="help-block" ng-show="loginForm.email.$invalid &&
+              loginForm.email.$touched">Por favor ingrese una direccion de correo</small>
+            </div>
+            <div class="form-group col-md-6 col-md-offset-3" ng-class="{'has-error': loginForm.password.$invalid &&
+            loginForm.password.$touched}">
+              <label for="password">Contraseña</label>
+              <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Contraseña" required="" ng-minlength = 6 />
+              <small class="help-block" ng-show="loginForm.password.$error.minlength &&
+              loginForm.password.$touched">La contraseña debe contener un minimo de 8 caracters.</small>
+            </div>
+            <div class=" col-md-6 col-md-offset-3">
+              <p ng-show="errMsg">{{errorMessage}}</p>
+              <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid"> Ingresar </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

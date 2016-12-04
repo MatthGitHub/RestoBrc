@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reservas</title>
+
+    <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+
+  </head>
+  <body ng-controller="reservasCtrl">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">RestoBrc - CP</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#/inicio">Inicio</a></li>
+          <li class="active"><a href="#/reservas">Reservas</a></li>
+          <li><a href="#/addresto">Agregar Restaurante</a></li>
+        </ul>
+
+      </ul>
+         <ul class="nav navbar-nav" style="float: right">
+         <li><a href="#contact" class="navbar-nav pull-right">Cerrar Sesion</a></li>
+       </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Tus Reservas</h3>
+        </div>
+      </div>
+      <div class="container">
+        <table>
+          <tr>
+            <th>Dia</th>.
+            <th>Restaurante</th>
+            <th>Comensales</th>
+          </tr>
+          <tr ng-repeat = "i in reservas">
+            <td>{{ i.dia }}</td>
+            <td>{{ i.restaurante }}</td>
+            <td>{{ i.comensales}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
