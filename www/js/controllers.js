@@ -106,14 +106,14 @@ angular.module('starter.controllers', ['ionic', 'ngMessages', 'firebase', 'ngCor
     }else{
       var dia = $scope.dia;
     }
-    if($scope.data.comensale == null){
+    if($scope.data.comensales == null){
       var comensales = 2;
     }else{
         var comensales = $scope.data.comensales;
     }
 
-    var resto = $scope.restorante.name;
-    var restoId = $scope.restorante.id;
+    var resto = $scope.restorante.nombre;
+    var restoId = $scope.restorante.usuarioId;
 
 
     console.log(dia);
