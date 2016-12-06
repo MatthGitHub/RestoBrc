@@ -5,7 +5,7 @@
   The Friends service returns an array of friend data
 -->
 
-<ion-view view-title="{{restorante.name}}">
+<ion-view view-title="{{restorante.nombre}}">
     <ion-nav-bar class="bar-stable">
         <ion-nav-back-button class="button-clear">
         <i class="ion-arrow-left-c"></i> Atras
@@ -16,7 +16,8 @@
     <div>
       <label>Direccion:
       </label>
-      <p>{{restorante.direccion}}</p>
+      <p>{{restorante.calle}} - {{restorante.numero}}</p>
+      <p>{{restorante.ciudad}} - {{restorante.provincia}}</p>
     </div>
     <div>
       <label>Telefono:
