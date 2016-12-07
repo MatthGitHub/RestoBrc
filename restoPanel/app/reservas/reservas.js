@@ -12,10 +12,5 @@ angular.module('myApp.reservas', ['ngRoute'])
 .controller('reservasCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray){
 
   var ref = firebase.database().ref().child ('reservas');
-  var reservas = firebaseArray(ref);
-  //$scope.reservas = $firebaseArray(ref);
-
-
-  if(reservas.val().)
-
+  $scope.reservas = $firebaseArray(ref);
 }]);
