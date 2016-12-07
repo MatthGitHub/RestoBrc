@@ -30,4 +30,20 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
     });
   }
 
+  // REGISTRAR USUARIO DESDE FORMULARIO
+  $scope.registrar = function(registerForm) {
+
+    var email = $scope.data.email;
+    var password = $scope.data.password;
+
+    // Registro de usuario
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
+      angular.element(document.querySelector('#registrarse')).modal('hide');
+    }, function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
+  }
+
 });

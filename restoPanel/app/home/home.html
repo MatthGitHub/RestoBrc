@@ -36,6 +36,35 @@
           </form>
         </div>
       </div>
+      <div class="col-md-6 col-md-offset-3">
+        <button class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#registrarse"> Registrarse </button>
+      </div>
+      <div class="modal fade" id="registrarse" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form name="registerForm" ng-submit="registrar()">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                      </button>
+                      <h4 class="modal-title" id="editModalLabel">Nuevo Usuario</h4>
+                  </div>
+                  <div class="modal-body">
+                          <div class="form-group">
+                              <label for="correo" class="control-label">Correo:</label>
+                              <input type="text" class="form-control" ng-model="data.email" id="correo">
+                          </div>
+                          <div class="form-group">
+                              <label for="password" class="control-label">Contraseña:</label>
+                              <input type="password" class="form-control" id="password" ng-model="data.password"></input>
+                          </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-default">Crear</button>
+                  </div>
+              </div>
+            </form>
+        </div>
+      </div>
     </div>
 </body>
 </html>
